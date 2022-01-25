@@ -1,0 +1,113 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:zmeulkit/pages/home.dart';
+import 'package:zmeulkit/pages/profile/profile.dart';
+import 'package:zmeulkit/utils/constant.dart';
+
+class NavBar extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return NavigationBar();
+  }
+}
+
+class NavigationBar extends State<NavBar> {
+  int _currentIndex = 0;
+  final List<Widget> _children = [
+    Home(),
+    Home(),
+    Home(),
+    Profile(),
+  ];
+  int backPressCounter = 1;
+  int backPressTotal = 2;
+
+  Future<bool> onWillPop() {
+    if (backPressCounter < 2) {
+      Fluttertoast.showToast(msg: "Tap Again To Exit ");
+      backPressCounter++;
+      Future.delayed(const Duration(seconds: 1, milliseconds: 500), () {
+        backPressCounter--;
+      });
+      return Future.value(false);
+    } else {
+      SystemNavigator.pop();
+      return Future.value(true);
+    }
+  }
+
+//  void setCurrentUserToMapHere() async {
+//    await AuthServices.setCurrentUserToMap(
+//        FirebaseAuth.instance.currentUser!.uid);
+//  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: onWillPop,
+      child: Scaffold(
+        body: _children[_currentIndex],
+        extendBody: true,
+        bottomNavigationBar: Container(
+          padding: const EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                spreadRadius: -10,
+                blurRadius: 60,
+                color: Colors.black.withOpacity(.20),
+                offset: Offset(0, 15),
+              )
+            ],
+          ),
+          child: GNav(
+              selectedIndex: _currentIndex,
+              onTabChange: onTabTapped,
+              haptic: true,
+              rippleColor: tertiaryColor,
+              hoverColor: tertiaryColor,
+              tabBackgroundColor: tertiaryColor,
+              color: primaryColor,
+              activeColor: secondaryColor,
+              gap: 4,
+              iconSize: 28,
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              duration: Duration(milliseconds: 300),
+              tabs: [
+                GButton(
+                  icon: CupertinoIcons.circle_bottomthird_split,
+                  text: 'Home',
+                ),
+                GButton(
+                  icon: CupertinoIcons.folder_circle,
+                  text: 'Wallet',
+                ),
+                GButton(
+                  icon: CupertinoIcons.viewfinder_circle,
+                  text: 'Scan',
+                ),
+                GButton(
+                  icon: CupertinoIcons.profile_circled,
+                  text: 'Profile',
+                )
+              ]),
+        ),
+      ),
+    );
+  }
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+}
