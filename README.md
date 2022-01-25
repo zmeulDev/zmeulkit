@@ -1,6 +1,6 @@
 # zmeulkit
 
-Zmeul Kit OTP
+Zmeul Kit with OTP
 
 ## Getting Started
 
