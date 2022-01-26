@@ -1,15 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:zmeulkit/models/user_model.dart';
+import 'package:zmeulkit/pages/appBar.dart';
 import 'package:zmeulkit/utils/constant.dart';
 import 'package:zmeulkit/utils/getImages.dart';
 import 'package:zmeulkit/utils/loading.dart';
 import 'package:zmeulkit/widgets/createAvatarWidget.dart';
-import 'package:zmeulkit/widgets/noFavQrWidget.dart';
-
-import 'appBar.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -17,7 +13,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  // late DocumentSnapshot id;
   CollectionReference qrCollection =
       FirebaseFirestore.instance.collection('codes');
 
@@ -36,37 +31,19 @@ class _HomeState extends State<Home> {
 
   getBody() {
     return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       child: Column(
         children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
+            margin: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
                 userContainer(),
                 Row(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'My favourites',
-                        style: style1.copyWith(
-                            fontSize: 20, fontWeight: FontWeight.w900),
-                      ),
-                    ),
-                    Spacer(),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(() => Home());
-                      },
-                      child: Text(
-                        'Show all',
-                        style: style3.copyWith(color: tertiaryColor),
-                      ),
-                    ),
+                    const Text('data'),
                   ],
                 ),
-                myFavouriteCodes(),
               ],
             ),
           ),
@@ -79,7 +56,7 @@ class _HomeState extends State<Home> {
     Size size = MediaQuery.of(context).size;
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.symmetric(vertical: 5),
+      margin: const EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: tertiaryColor,
@@ -93,7 +70,7 @@ class _HomeState extends State<Home> {
             Row(
               children: [
                 createAvatarWidget(25),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 Column(
@@ -112,7 +89,7 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             StreamBuilder(
@@ -142,7 +119,7 @@ class _HomeState extends State<Home> {
                           itemCount: list.length,
                           itemBuilder: (BuildContext context, int index) =>
                               Container(
-                            padding: EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
                                 color: secondaryColor,
                                 borderRadius: BorderRadius.circular(15)),
@@ -160,32 +137,6 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-    );
-  }
-
-  myFavouriteCodes() {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      height: size.height * 0.2,
-      child: StreamBuilder(
-          stream: qrCollection
-              .where('uid', isEqualTo: UserModel().uid)
-              .where('isFav', isEqualTo: '1')
-              .snapshots(),
-          builder: (context, AsyncSnapshot snapshot) {
-            if (!snapshot.hasData) {
-              return Center(
-                child: loading(),
-              );
-            } else {
-              List<DocumentSnapshot> list = snapshot.data.docs;
-              if (list.isEmpty) {
-                return noFavQrWidget();
-              } else {
-                return Text('ListViewBuilder');
-              }
-            }
-          }),
     );
   }
 }

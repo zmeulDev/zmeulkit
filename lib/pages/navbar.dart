@@ -39,11 +39,6 @@ class NavigationBar extends State<NavBar> {
     }
   }
 
-//  void setCurrentUserToMapHere() async {
-//    await AuthServices.setCurrentUserToMap(
-//        FirebaseAuth.instance.currentUser!.uid);
-//  }
-
   @override
   void initState() {
     super.initState();
@@ -65,7 +60,7 @@ class NavigationBar extends State<NavBar> {
                 spreadRadius: -10,
                 blurRadius: 60,
                 color: Colors.black.withOpacity(.20),
-                offset: Offset(0, 15),
+                offset: const Offset(0, 15),
               )
             ],
           ),
@@ -80,22 +75,22 @@ class NavigationBar extends State<NavBar> {
               activeColor: secondaryColor,
               gap: 4,
               iconSize: 28,
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              duration: Duration(milliseconds: 300),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              duration: const Duration(milliseconds: 300),
               tabs: [
-                GButton(
+                const GButton(
                   icon: CupertinoIcons.circle_bottomthird_split,
                   text: 'Home',
                 ),
-                GButton(
+                const GButton(
                   icon: CupertinoIcons.folder_circle,
                   text: 'Wallet',
                 ),
-                GButton(
+                const GButton(
                   icon: CupertinoIcons.viewfinder_circle,
                   text: 'Scan',
                 ),
-                GButton(
+                const GButton(
                   icon: CupertinoIcons.profile_circled,
                   text: 'Profile',
                 )

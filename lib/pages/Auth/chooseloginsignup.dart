@@ -36,7 +36,7 @@ class ChooseLoginSignup extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Tkyo',
+                        'zmeulKit',
                         style: style1.copyWith(
                             fontSize: 28, color: secondaryColor),
                       ),
@@ -88,7 +88,7 @@ class ChooseLoginSignup extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         )),
                         child: Text(
-                          'Tkyo: social wallet',
+                          'zmeulKit: flutter/firebase OTP login',
                           style: style2.copyWith(color: tertiaryColor),
                         )),
                   ),

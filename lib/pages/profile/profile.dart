@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zmeulkit/Services/auth_services.dart';
 import 'package:zmeulkit/models/user_model.dart';
+import 'package:zmeulkit/pages/Auth/chooseloginsignup.dart';
 import 'package:zmeulkit/pages/imageview.dart';
 import 'package:zmeulkit/pages/profile/editprofile.dart';
 import 'package:zmeulkit/utils/constant.dart';
 import 'package:zmeulkit/utils/helper.dart';
 import 'package:zmeulkit/widgets/createAvatarWidget.dart';
-
-import '../Auth/chooseloginsignup.dart';
 
 class Profile extends StatefulWidget {
   @override

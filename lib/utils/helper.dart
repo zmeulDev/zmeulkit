@@ -1,7 +1,5 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
-
 import 'constant.dart';
 
 class Helper {

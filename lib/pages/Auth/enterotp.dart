@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,8 +20,6 @@ class EnterOTPScreen extends StatefulWidget {
 
 class _EnterOTPScreenState extends State<EnterOTPScreen> {
   TextEditingController textEditingController = TextEditingController();
-
-  // ..text = "123456";
 
   // ignore: close_sinks
   String _verificationCode = "";
