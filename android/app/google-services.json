@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:111776262525:android:fa1c17fd958c0b9ec10414",
+        "mobilesdk_app_id": "1:111776262525:android:d4931ce0c36b9b84c10414",
         "android_client_info": {
-          "package_name": "com.zmeul.kit"
+          "package_name": "com.zmeul.zmeulkit"
         }
       },
       "oauth_client": [
