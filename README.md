@@ -2,15 +2,29 @@
 
 Zmeul Kit with OTP
 
-## Getting Started
+## 31 May 2022
 
-This project is a starting point for a Flutter application.
+- Screenshots folder in assets
+- Gradle version update to 1.6.21
+- SHA1 debug added - https://developers.google.com/android/guides/client-auth?authuser=0
+- Firestore rules changet to:
+    rules_version = '2';
+    service cloud.firestore {
+      match /databases/{database}/documents {
+        match /{document=**} {
+          allow read, write: if
+              request.time < timestamp.date(2022, 8, 28);
+        }
+      }
+    }
 
-A few resources to get you started if this is your first Flutter project:
+- FireStore rules changed to:
+    rules_version = '2';
+    service firebase.storage {
+      match /b/{bucket}/o {
+        match /{allPaths=**} {
+          allow read, write: if request.auth != null;
+        }
+      }
+    }
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
