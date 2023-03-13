@@ -2,6 +2,9 @@
 
 Zmeul Kit with OTP
 
+## 13 March 2023
+- Flutter 3.7.7 upgrade
+
 ## 31 May 2022
 
 - Screenshots folder in assets
